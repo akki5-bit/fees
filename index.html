@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Secure Access</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -9,11 +10,14 @@
 body{
 font-family:Segoe UI;
 height:100vh;
+margin:0;
 display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(120deg,#dfe9f3,#ffffff);
 }
+
+/* login box */
 
 .box{
 background:white;
@@ -21,38 +25,29 @@ padding:25px;
 border-radius:12px;
 box-shadow:0px 6px 15px rgba(0,0,0,0.2);
 text-align:center;
+width:90%;
+max-width:320px;
 }
 
-input{
-padding:8px;
-margin:8px;
-border-radius:6px;
-border:1px solid #ccc;
-}
+/* password container */
 
-button{
-padding:8px 15px;
-background:green;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-.error{
-color:red;
-font-size:14px;
-}
 .passwordBox{
 position:relative;
 width:100%;
 }
 
+/* input styling */
+
 .passwordBox input{
 width:100%;
 padding:10px 40px 10px 10px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:16px;
 box-sizing:border-box;
 }
+
+/* eye button */
 
 .eyeBtn{
 position:absolute;
@@ -63,20 +58,42 @@ cursor:pointer;
 font-size:18px;
 }
 
+/* unlock button */
+
+button{
+margin-top:12px;
+padding:10px;
+width:100%;
+background:green;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* error text */
+
+.error{
+color:red;
+font-size:14px;
+margin-top:8px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="passwordbox">
+<div class="box">
 
 <h2>🔐 Enter Password</h2>
 
+<div class="passwordBox">
 <input type="password" id="password" placeholder="Enter password">
 <span class="eyeBtn" onclick="togglePassword()">👁️</span>
-
-<br>
+</div>
 
 <button onclick="checkPassword()">Unlock</button>
 
@@ -86,31 +103,38 @@ font-size:18px;
 
 <script>
 
-const correctPassword = "feestracker"; // yahan apna password set karo
+const correctPassword="Akki123"; // yahan apna password change karo
 
 function checkPassword(){
 
-let entered = document.getElementById("password").value;
+let entered=document.getElementById("password").value;
 
-if(entered === correctPassword){
+if(entered===correctPassword){
 
-window.location.href = "tracker.html";
+localStorage.setItem("loggedIn","true");
+window.location.href="tracker.html";
 
 }else{
 
-document.getElementById("error").innerText = "Wrong Password ❌";
+document.getElementById("error").innerText="Wrong Password ❌";
 
 }
 
 }
-  function togglePassword(){
+
+/* eye toggle function */
+
+function togglePassword(){
 
 let pass=document.getElementById("password");
+let eye=document.querySelector(".eyeBtn");
 
 if(pass.type==="password"){
 pass.type="text";
+eye.innerText="🙈";
 }else{
 pass.type="password";
+eye.innerText="👁️";
 }
 
 }

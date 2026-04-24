@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tuition Fee Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>📊 Tuition Fee Tracker</h1>
+
+<div class="addBox">
+<input type="text" id="newName" placeholder="Student Name">
+<input type="text" id="newStart" placeholder="Start Date">
+<input type="number" id="monthlyFees" placeholder="Monthly Fees ₹">
+<button onclick="addStudent()">Add Student</button>
+</div>
+
+<h2>Total Earnings: ₹ <span id="totalEarnings">0</span></h2>
+
+<div class="container" id="students"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
